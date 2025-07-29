@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Plant Model</title>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+  </head>
+  <body>
+    <h2>Model Result: <span id="result">Loading...</span></h2>
+    <script type="text/javascript">
+      const URL = "https://raw.githubusercontent.com/Pappu0108/plant-model/main/";
+
+      let model, labelContainer;
+
+      async function init() {
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
+
+        model = await tmImage.load(modelURL, metadataURL);
+        labelContainer = document.getElementById("result");
+
+        const prediction = await model.predict(document.createElement("img")); // Dummy for init
+        labelContainer.innerText = "Model Loaded!";
+      }
+
+      init();
+    </script>
+  </body>
+</html>
